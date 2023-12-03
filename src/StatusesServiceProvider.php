@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace MrVaco\OrchidStatusesManager;
 
 use Illuminate\Support\Facades\Lang;
+use Illuminate\Support\Facades\View;
 use MrVaco\HelperCode\Classes\Migrations;
 use Orchid\Platform\Dashboard;
 use Orchid\Platform\OrchidServiceProvider;
@@ -22,6 +23,8 @@ class StatusesServiceProvider extends OrchidServiceProvider
 
         $this->publish();
         $this->router();
+
+        View::addLocation(__DIR__ . '/../resources/views');
     }
 
     public function menu(): array
