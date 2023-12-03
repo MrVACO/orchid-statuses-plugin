@@ -1,0 +1,31 @@
+{
+    "name": "mr-vaco/orchid-statuses-manager-plugin",
+    "description": "Statuses management",
+    "keywords": [
+        "laravel",
+        "orchid statuses",
+        "orchid statuses manager",
+        "orchid statuses management"
+    ],
+    "license": "MIT",
+    "require": {
+        "php": "^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "MrVaco\\OrchidStatusesManager\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "MrVaco\\OrchidStatusesManager\\StatusesServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
