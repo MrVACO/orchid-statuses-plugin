@@ -24,7 +24,7 @@ class StatusesServiceProvider extends OrchidServiceProvider
         $this->publish();
         $this->router();
 
-        View::addLocation(__DIR__ . '/../resources/views');
+        View::addNamespace(self::$plugin_prefix, __DIR__ . '/../resources/views');
     }
 
     public function menu(): array
@@ -47,7 +47,7 @@ class StatusesServiceProvider extends OrchidServiceProvider
             ->group(__DIR__ . '/../routes/web.php');
     }
 
-    protected function publish()
+    protected function publish(): void
     {
         if (!$this->app->runningInConsole())
         {

@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace MrVaco\OrchidStatusesManager\Layouts;
 
+use MrVaco\OrchidHelperCode\Screens\Tables\TDBoolean;
 use Orchid\Screen\Components\Cells\DateTimeSplit;
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\TD;
@@ -19,7 +20,7 @@ class StatusesLayout extends Table
                 ->cantHide()
                 ->render(function($status)
                 {
-                    return view('preview_statuses', ['status' => $status]);
+                    return view('mr_vaco.statuses::statuses_preview', ['status' => $status]);
                 }),
 
             TD::make('color', __('Color'))
@@ -31,8 +32,17 @@ class StatusesLayout extends Table
                 ->alignCenter()
                 ->render(function($status)
                 {
-                    return view('badge_statuses_groups', ['groups' => $status->group]);
+                    return view('mr_vaco.statuses::statuses_groups_badge', ['groups' => $status->group]);
                 }),
+
+            TDBoolean::make('active', __('Default Active'))
+                ->alignCenter(),
+
+            TDBoolean::make('disabled', __('Default Disabled'))
+                ->alignCenter(),
+
+            TDBoolean::make('draft', __('Default Draft'))
+                ->alignCenter(),
 
             TD::make('created_at', __('Created'))
                 ->usingComponent(DateTimeSplit::class)

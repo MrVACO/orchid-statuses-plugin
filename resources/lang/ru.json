@@ -1,6 +1,9 @@
 {
     "Color": "Цвет",
     "Groups": "Группы",
+    "Default Active": "Активно (по-умолчанию)",
+    "Default Disabled": "Отключено (по-умолчанию)",
+    "Default Draft": "Черновик (по-умолчанию)",
     "Preview": "Превью",
     "Statuses management": "Управление статусами",
     "Statuses": "Статусы"

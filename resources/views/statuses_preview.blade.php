@@ -9,7 +9,7 @@
 </svg>
 
 <span
-    style="color: {{ $status->color }}"
+    style="color: {{ $status->color }}; font-size: 105%"
 >
     {{ $status->name }}
 </span>
