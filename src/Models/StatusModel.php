@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Orchid\Screen\AsSource;
 
-class StatusesModel extends Model
+class StatusModel extends Model
 {
     use AsSource;
 
@@ -23,7 +23,7 @@ class StatusesModel extends Model
 
     public function group(): BelongsToMany
     {
-        return $this->belongsToMany(StatusesGroupModel::class, 'mr_vaco__statuses_rel_groups', 'id', 'group_id');
+        return $this->belongsToMany(StatusGroupModel::class, 'mr_vaco__statuses_rel_groups', 'id', 'group_id');
     }
 
     public function scopeIsActive(Builder $query): Builder

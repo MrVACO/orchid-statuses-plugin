@@ -3,8 +3,8 @@
 declare(strict_types = 1);
 
 use Illuminate\Database\Migrations\Migration;
-use MrVaco\OrchidStatusesManager\Models\StatusesGroupModel;
-use MrVaco\OrchidStatusesManager\Models\StatusesModel;
+use MrVaco\OrchidStatusesManager\Models\StatusGroupModel;
+use MrVaco\OrchidStatusesManager\Models\StatusModel;
 
 return new class extends Migration
 {
@@ -82,13 +82,13 @@ return new class extends Migration
         }
     }
 
-    protected function createStatus(array $data): StatusesModel
+    protected function createStatus(array $data): StatusModel
     {
-        return StatusesModel::query()->create($data);
+        return StatusModel::query()->create($data);
     }
 
-    protected function createStatusesList(array $data): StatusesGroupModel
+    protected function createStatusesList(array $data): StatusGroupModel
     {
-        return StatusesGroupModel::query()->create($data);
+        return StatusGroupModel::query()->create($data);
     }
 };
