@@ -20,7 +20,7 @@ class StatusesLayout extends Table
                 ->cantHide()
                 ->render(function($status)
                 {
-                    return view('mr_vaco.statuses::statuses_preview', ['status' => $status]);
+                    return view('mr_vaco.statuses::status_preview', ['status' => $status]);
                 }),
 
             TD::make('color', __('Color'))
@@ -32,7 +32,7 @@ class StatusesLayout extends Table
                 ->alignCenter()
                 ->render(function($status)
                 {
-                    return view('mr_vaco.statuses::statuses_groups_badge', ['groups' => $status->group]);
+                    return view('mr_vaco.statuses::status_groups_badge', ['groups' => $status->group]);
                 }),
 
             TDBoolean::make('active', __('Default Active'))
