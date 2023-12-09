@@ -17,7 +17,7 @@ class StatusesModel extends Model
         'name',
         'color',
         'active',
-        'disable',
+        'disabled',
         'draft',
     ];
 
