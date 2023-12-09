@@ -1,10 +1,15 @@
 {
     "Color": "Цвет",
-    "Groups": "Группы",
+    "Create status": "Добавить статус",
     "Default Active": "Активно (по-умолчанию)",
     "Default Disabled": "Отключено (по-умолчанию)",
     "Default Draft": "Черновик (по-умолчанию)",
+    "Edit status : :name": "Редактирование статуса : :name",
+    "Edit status": "Редактирование статуса",
+    "Groups": "Группы",
     "Preview": "Превью",
+    "Status was removed": "Статус удален",
+    "Status was saved": "Статус сохранен",
     "Statuses management": "Управление статусами",
     "Statuses": "Статусы"
 }

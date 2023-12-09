@@ -27,12 +27,19 @@ class EditScreen extends Screen
 
     public function name(): ?string
     {
-        return $this->status->exists ? __('Edit status') : __('Create status');
+        return $this->status->exists
+            ? __('Edit status : :name', ['name' => $this->status->name])
+            : __('Create status');
     }
 
     public function commandBar(): iterable
     {
         return [
+            Button::make(__('Remove'))
+                ->icon('bs.trash3')
+                ->method('remove')
+                ->canSee($this->status->exists),
+
             Link::make(__('Cancel'))
                 ->icon('bs.x')
                 ->route(sprintf('%s.status.list', StatusesServiceProvider::$plugin_prefix)),
@@ -43,9 +50,6 @@ class EditScreen extends Screen
         ];
     }
 
-    /**
-     * @return \Orchid\Screen\Layout[]
-     */
     public function layout(): iterable
     {
         return [
@@ -70,6 +74,16 @@ class EditScreen extends Screen
         $status->group()->attach($groups);
 
         Toast::success(__('Status was saved'));
+
+        return redirect()->route(StatusesServiceProvider::$plugin_prefix . '.status.list');
+    }
+
+    public function remove(StatusModel $status): RedirectResponse
+    {
+        $status->group()->detach();
+        $status->delete();
+
+        Toast::info(__('Status was removed'));
 
         return redirect()->route(StatusesServiceProvider::$plugin_prefix . '.status.list');
     }

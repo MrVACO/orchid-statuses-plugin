@@ -22,7 +22,6 @@ app('router')
                     ->name('list')
                     ->breadcrumbs(fn (Trail $trail) => $trail
                         ->parent('platform.index')
-                        ->push(__('Statuses management'))
                         ->push(__('Statuses'))
                     );
 
@@ -31,7 +30,6 @@ app('router')
                     ->name('create')
                     ->breadcrumbs(fn (Trail $trail) => $trail
                         ->parent('platform.index')
-                        ->push(__('Statuses management'))
                         ->push(__('Statuses'), route(sprintf('%s.status.list', StatusesServiceProvider::$plugin_prefix)))
                         ->push(__('Create status'))
                     );
@@ -39,5 +37,18 @@ app('router')
                 app('router')
                     ->screen('create/save', EditScreen::class)
                     ->name('create.save');
+
+                app('router')
+                    ->screen('{status}/edit', EditScreen::class)
+                    ->name('edit')
+                    ->breadcrumbs(fn (Trail $trail, $status) => $trail
+                        ->parent('platform.index')
+                        ->push(__('Statuses'), route(sprintf('%s.status.list', StatusesServiceProvider::$plugin_prefix)))
+                        ->push(__('Edit status'), route(sprintf('%s.status.edit', StatusesServiceProvider::$plugin_prefix), $status))
+                    );
+
+                app('router')
+                    ->screen('{status}/edit/remove', EditScreen::class)
+                    ->name('remove');
             });
     });

@@ -5,6 +5,8 @@ declare(strict_types = 1);
 namespace MrVaco\OrchidStatusesManager\Layouts;
 
 use MrVaco\OrchidHelperCode\Screens\Tables\TDBoolean;
+use MrVaco\OrchidStatusesManager\Models\StatusModel;
+use MrVaco\OrchidStatusesManager\Screens\Contents\StatusContent;
 use Orchid\Screen\Components\Cells\DateTimeSplit;
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\TD;
@@ -18,10 +20,7 @@ class StatusesLayout extends Table
         return [
             TD::make('name', __('Name'))
                 ->cantHide()
-                ->render(function($status)
-                {
-                    return view('mr_vaco.statuses::status_preview', ['status' => $status]);
-                }),
+                ->render(fn (StatusModel $status) => new StatusContent($status)),
 
             TD::make('color', __('Color'))
                 ->sort()
