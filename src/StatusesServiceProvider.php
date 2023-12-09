@@ -7,6 +7,7 @@ namespace MrVaco\OrchidStatusesManager;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\View;
 use MrVaco\HelperCode\Classes\Migrations;
+use MrVaco\OrchidStatusesManager\Classes\StatusClass;
 use MrVaco\OrchidStatusesManager\Models\StatusModel;
 use MrVaco\OrchidStatusesManager\Observers\StatusObserver;
 use Orchid\Platform\Dashboard;
@@ -15,8 +16,6 @@ use Orchid\Screen\Actions\Menu;
 
 class StatusesServiceProvider extends OrchidServiceProvider
 {
-    public static string $plugin_prefix = 'mr_vaco.statuses';
-
     public function boot(Dashboard $dashboard): void
     {
         Lang::addJsonPath(__DIR__ . '/../resources/lang');
@@ -26,7 +25,7 @@ class StatusesServiceProvider extends OrchidServiceProvider
         $this->publish();
         $this->router();
 
-        View::addNamespace(self::$plugin_prefix, __DIR__ . '/../resources/views');
+        View::addNamespace(StatusClass::$plugin_prefix, __DIR__ . '/../resources/views');
         StatusModel::observe(StatusObserver::class);
     }
 
@@ -35,8 +34,8 @@ class StatusesServiceProvider extends OrchidServiceProvider
         return [
             Menu::make(__('Statuses'))
                 ->icon('bs.collection')
-                ->route(self::$plugin_prefix . '.status.list')
-                ->active(self::$plugin_prefix . '.status.list')
+                ->route(StatusClass::$plugin_prefix . '.status.list')
+                ->active(StatusClass::$plugin_prefix . '.status.list')
                 ->title(__('Statuses management'))
                 ->sort(100),
         ];

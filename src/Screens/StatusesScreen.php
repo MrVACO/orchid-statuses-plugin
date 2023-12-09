@@ -4,9 +4,9 @@ declare(strict_types = 1);
 
 namespace MrVaco\OrchidStatusesManager\Screens;
 
+use MrVaco\OrchidStatusesManager\Classes\StatusClass;
 use MrVaco\OrchidStatusesManager\Layouts\StatusesLayout;
 use MrVaco\OrchidStatusesManager\Models\StatusModel;
-use MrVaco\OrchidStatusesManager\StatusesServiceProvider;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Screen;
 
@@ -29,7 +29,7 @@ class StatusesScreen extends Screen
         return [
             Link::make(__('Add'))
                 ->icon('bs.plus')
-                ->route(StatusesServiceProvider::$plugin_prefix . '.status.create'),
+                ->route(StatusClass::$plugin_prefix . '.status.create'),
         ];
     }
 

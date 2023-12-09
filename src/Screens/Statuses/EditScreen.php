@@ -6,9 +6,9 @@ namespace MrVaco\OrchidStatusesManager\Screens\Statuses;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use MrVaco\OrchidStatusesManager\Classes\StatusClass;
 use MrVaco\OrchidStatusesManager\Layouts\StatusEditLayer;
 use MrVaco\OrchidStatusesManager\Models\StatusModel;
-use MrVaco\OrchidStatusesManager\StatusesServiceProvider;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Screen;
@@ -42,7 +42,7 @@ class EditScreen extends Screen
 
             Link::make(__('Cancel'))
                 ->icon('bs.x')
-                ->route(sprintf('%s.status.list', StatusesServiceProvider::$plugin_prefix)),
+                ->route(sprintf('%s.status.list', StatusClass::$plugin_prefix)),
 
             Button::make(__('Save'))
                 ->icon('bs.check-circle')
@@ -75,7 +75,7 @@ class EditScreen extends Screen
 
         Toast::success(__('Status was saved'));
 
-        return redirect()->route(StatusesServiceProvider::$plugin_prefix . '.status.list');
+        return redirect()->route(StatusClass::$plugin_prefix . '.status.list');
     }
 
     public function remove(StatusModel $status): RedirectResponse
@@ -85,6 +85,6 @@ class EditScreen extends Screen
 
         Toast::info(__('Status was removed'));
 
-        return redirect()->route(StatusesServiceProvider::$plugin_prefix . '.status.list');
+        return redirect()->route(StatusClass::$plugin_prefix . '.status.list');
     }
 }
