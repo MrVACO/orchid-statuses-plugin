@@ -20,7 +20,7 @@ app('router')
                 app('router')
                     ->screen('', StatusesScreen::class)
                     ->name('list')
-                    ->breadcrumbs(fn(Trail $trail) => $trail
+                    ->breadcrumbs(fn (Trail $trail) => $trail
                         ->parent('platform.index')
                         ->push(__('Statuses management'))
                         ->push(__('Statuses'))
@@ -29,7 +29,7 @@ app('router')
                 app('router')
                     ->screen('create', EditScreen::class)
                     ->name('create')
-                    ->breadcrumbs(fn(Trail $trail) => $trail
+                    ->breadcrumbs(fn (Trail $trail) => $trail
                         ->parent('platform.index')
                         ->push(__('Statuses management'))
                         ->push(__('Statuses'), route(sprintf('%s.status.list', StatusesServiceProvider::$plugin_prefix)))
