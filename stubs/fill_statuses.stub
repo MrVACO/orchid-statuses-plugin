@@ -10,13 +10,6 @@ return new class extends Migration
 {
     protected array $statuses = [
         [
-            'name'     => 'Protected',
-            'color'    => '#cdd110',
-            'active'   => false,
-            'disabled' => false,
-            'draft'    => false,
-        ],
-        [
             'name'     => 'New',
             'color'    => '#008ae6',
             'active'   => false,
@@ -50,17 +43,17 @@ return new class extends Migration
         [
             'name'     => 'Full',
             'slug'     => 'full',
-            'statuses' => [2, 3, 4, 5]
+            'statuses' => [1, 2, 3, 4]
         ],
         [
             'name'     => 'Base',
             'slug'     => 'base',
-            'statuses' => [2, 3, 4, 5]
+            'statuses' => [1, 2, 3, 4]
         ],
         [
             'name'     => 'Short',
             'slug'     => 'short',
-            'statuses' => [3, 4, 5]
+            'statuses' => [2, 3, 4]
         ],
     ];
 
@@ -78,7 +71,6 @@ return new class extends Migration
 
             $value = $this->createStatusesList($list);
             $value->statuses()->sync($ids);
-
         }
     }
 
