@@ -4,11 +4,14 @@ declare(strict_types = 1);
 
 namespace MrVaco\OrchidStatusesManager\Screens;
 
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use MrVaco\OrchidStatusesManager\Classes\StatusClass;
 use MrVaco\OrchidStatusesManager\Layouts\StatusesLayout;
 use MrVaco\OrchidStatusesManager\Models\StatusModel;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Screen;
+use Orchid\Support\Facades\Toast;
 
 class StatusesScreen extends Screen
 {
@@ -38,5 +41,16 @@ class StatusesScreen extends Screen
         return [
             StatusesLayout::class,
         ];
+    }
+
+    public function remove(Request $request): RedirectResponse
+    {
+        $status = StatusModel::query()->findOrFail($request->get('id'));
+        $status->group()->detach();
+        $status->delete();
+
+        Toast::info(__('Status was removed'));
+
+        return redirect()->route(StatusClass::$plugin_prefix . '.status.list');
     }
 }

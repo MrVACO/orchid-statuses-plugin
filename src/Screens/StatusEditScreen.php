@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace MrVaco\OrchidStatusesManager\Screens\Statuses;
+namespace MrVaco\OrchidStatusesManager\Screens;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -14,7 +14,7 @@ use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Toast;
 
-class EditScreen extends Screen
+class StatusEditScreen extends Screen
 {
     public $status;
 
@@ -35,14 +35,15 @@ class EditScreen extends Screen
     public function commandBar(): iterable
     {
         return [
-            Button::make(__('Remove'))
-                ->icon('bs.trash3')
-                ->method('remove')
-                ->canSee($this->status->exists),
-
             Link::make(__('Cancel'))
                 ->icon('bs.x')
                 ->route(sprintf('%s.status.list', StatusClass::$plugin_prefix)),
+
+            Button::make(__('Remove'))
+                ->icon('bs.trash3')
+                ->method('remove')
+                ->confirm(__('The status will be deleted without the possibility of recovery'))
+                ->canSee($this->status->exists),
 
             Button::make(__('Save'))
                 ->icon('bs.check-circle')

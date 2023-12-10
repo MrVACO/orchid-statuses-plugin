@@ -5,8 +5,12 @@ declare(strict_types = 1);
 namespace MrVaco\OrchidStatusesManager\Layouts;
 
 use MrVaco\OrchidHelperCode\Screens\Tables\TDBoolean;
+use MrVaco\OrchidStatusesManager\Classes\StatusClass;
 use MrVaco\OrchidStatusesManager\Models\StatusModel;
 use MrVaco\OrchidStatusesManager\Screens\Contents\StatusContent;
+use Orchid\Screen\Actions\Button;
+use Orchid\Screen\Actions\DropDown;
+use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Components\Cells\DateTimeSplit;
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\TD;
@@ -31,7 +35,7 @@ class StatusesLayout extends Table
                 ->alignCenter()
                 ->render(function($status)
                 {
-                    return view('mr_vaco.statuses::status_groups_badge', ['groups' => $status->group]);
+                    return view(StatusClass::$plugin_prefix . '::status_groups_badge', ['groups' => $status->group]);
                 }),
 
             TDBoolean::make('active', __('Default Active'))
@@ -45,14 +49,32 @@ class StatusesLayout extends Table
 
             TD::make('created_at', __('Created'))
                 ->usingComponent(DateTimeSplit::class)
-                ->align(TD::ALIGN_RIGHT)
+                ->alignCenter()
                 ->defaultHidden()
                 ->sort(),
 
             TD::make('updated_at', __('Last edit'))
                 ->usingComponent(DateTimeSplit::class)
-                ->align(TD::ALIGN_RIGHT)
+                ->alignCenter()
                 ->sort(),
+
+            TD::make(__('Actions'))
+                ->alignCenter()
+                ->width('100px')
+                ->render(fn (StatusModel $status) => DropDown::make()
+                    ->icon('bs.three-dots-vertical')
+                    ->list([
+                        Link::make(__('Edit'))
+                            ->route(StatusClass::$plugin_prefix . '.status.edit', $status->id)
+                            ->icon('bs.pencil'),
+
+                        Button::make(__('Delete'))
+                            ->icon('bs.trash3')
+                            ->confirm(__('The status will be deleted without the possibility of recovery'))
+                            ->method('remove', [
+                                'id' => $status->id,
+                            ]),
+                    ])),
         ];
     }
 }
