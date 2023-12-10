@@ -29,7 +29,7 @@ class StatusesGroupTable extends Table
                 ->sort()
                 ->alignCenter(),
 
-            TD::make('statuses_count', __('Count'))
+            TD::make('statuses_count', __('Statuses count'))
                 ->sort()
                 ->alignCenter()
                 ->render(fn (StatusGroupModel $group) => $group->statuses->count()),
