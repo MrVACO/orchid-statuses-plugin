@@ -33,11 +33,17 @@ class StatusesServiceProvider extends OrchidServiceProvider
     {
         return [
             Menu::make(__('Statuses'))
-                ->icon('bs.collection')
+                ->icon('bs.check2-square')
                 ->route(StatusClass::$plugin_prefix . '.status.list')
                 ->active(StatusClass::$plugin_prefix . '.status.list')
                 ->title(__('Statuses management'))
                 ->sort(100),
+
+            Menu::make(__('Status groups'))
+                ->icon('bs.collection')
+                ->route(StatusClass::$plugin_prefix . '.status.group.list')
+                ->active(StatusClass::$plugin_prefix . '.status.group.list')
+                ->sort(101),
         ];
     }
 

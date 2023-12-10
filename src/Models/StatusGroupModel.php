@@ -4,11 +4,12 @@ namespace MrVaco\OrchidStatusesManager\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Orchid\Filters\Filterable;
 use Orchid\Screen\AsSource;
 
 class StatusGroupModel extends Model
 {
-    use AsSource;
+    use AsSource, Filterable;
 
     protected $table = 'mr_vaco__statuses_groups';
 
@@ -17,12 +18,19 @@ class StatusGroupModel extends Model
         'slug'
     ];
 
+    protected array $allowedSorts = [
+        'name',
+        'slug',
+        'created_at',
+        'updated_at'
+    ];
+
     public array $rules = [
         'slug' => 'unique:mr_vaco__statuses_groups'
     ];
 
     public function statuses(): BelongsToMany
     {
-        return $this->belongsToMany(StatusGroupModel::class, 'mr_vaco__statuses_rel_groups', 'group_id', 'id');
+        return $this->belongsToMany(StatusModel::class, 'mr_vaco__statuses_rel_groups', 'group_id', 'id');
     }
 }

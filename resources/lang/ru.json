@@ -1,16 +1,23 @@
 {
     "Color": "Цвет",
+    "Create status group": "Добавить группу",
     "Create status": "Добавить статус",
     "Default Active": "Активно (по-умолчанию)",
     "Default Disabled": "Отключено (по-умолчанию)",
     "Default Draft": "Черновик (по-умолчанию)",
     "Edit status : :name": "Редактирование статуса : :name",
+    "Edit status group : :name": "Изменить группу : :name",
+    "Edit status group": "Изменить группу",
     "Edit status": "Редактирование статуса",
     "Groups": "Группы",
     "Preview": "Превью",
+    "Status group was removed": "Группа удалена",
+    "Status group was saved": "Группа сохранена",
+    "Status groups": "Группы статусов",
     "Status was removed": "Статус удален",
     "Status was saved": "Статус сохранен",
     "Statuses management": "Управление статусами",
     "Statuses": "Статусы",
+    "The status group will be deleted without the possibility of recovery": "Группа статусов будет удалена без возможности восстановления",
     "The status will be deleted without the possibility of recovery": "Статус будет удален без возможности восстановления"
 }
