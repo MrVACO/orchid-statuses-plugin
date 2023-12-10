@@ -34,6 +34,7 @@ class StatusesTable extends Table
 
             TD::make('group', __('Groups'))
                 ->alignCenter()
+                ->width('200px')
                 ->render(function($status)
                 {
                     return view(StatusClass::$plugin_prefix . '::status_groups_badge', ['groups' => $status->group]);
@@ -41,14 +42,17 @@ class StatusesTable extends Table
 
             TDBoolean::make('active', __('Default Active'))
                 ->sort()
+                ->width('150px')
                 ->alignCenter(),
 
             TDBoolean::make('disabled', __('Default Disabled'))
                 ->sort()
+                ->width('150px')
                 ->alignCenter(),
 
             TDBoolean::make('draft', __('Default Draft'))
                 ->sort()
+                ->width('150px')
                 ->alignCenter(),
 
             TD::make('created_at', __('Created'))
