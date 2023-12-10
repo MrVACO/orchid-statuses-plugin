@@ -18,7 +18,7 @@ class StatusesScreen extends Screen
     public function query(): iterable
     {
         return [
-            'statuses' => StatusModel::query()->get()
+            'statuses' => StatusModel::query()->filters()->defaultSort('id')->paginate()
         ];
     }
 

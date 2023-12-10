@@ -5,11 +5,12 @@ namespace MrVaco\OrchidStatusesManager\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Orchid\Filters\Filterable;
 use Orchid\Screen\AsSource;
 
 class StatusModel extends Model
 {
-    use AsSource;
+    use AsSource, Filterable;
 
     protected $table = 'mr_vaco__statuses';
 
@@ -19,6 +20,16 @@ class StatusModel extends Model
         'active',
         'disabled',
         'draft',
+    ];
+
+    protected array $allowedSorts = [
+        'name',
+        'color',
+        'active',
+        'disabled',
+        'draft',
+        'created_at',
+        'updated_at'
     ];
 
     public function group(): BelongsToMany

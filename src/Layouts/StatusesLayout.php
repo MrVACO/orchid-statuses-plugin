@@ -23,6 +23,7 @@ class StatusesLayout extends Table
     {
         return [
             TD::make('name', __('Name'))
+                ->sort()
                 ->cantHide()
                 ->render(fn (StatusModel $status) => new StatusContent($status)),
 
@@ -39,12 +40,15 @@ class StatusesLayout extends Table
                 }),
 
             TDBoolean::make('active', __('Default Active'))
+                ->sort()
                 ->alignCenter(),
 
             TDBoolean::make('disabled', __('Default Disabled'))
+                ->sort()
                 ->alignCenter(),
 
             TDBoolean::make('draft', __('Default Draft'))
+                ->sort()
                 ->alignCenter(),
 
             TD::make('created_at', __('Created'))
