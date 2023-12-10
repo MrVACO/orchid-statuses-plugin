@@ -33,7 +33,7 @@ class StatusEditRows extends Rows
                 Select::make('status.group')
                     ->fromQuery(StatusGroupModel::query(), 'name')
                     ->multiple()
-                    ->title('Select groups'),
+                    ->title(__('Select groups')),
             ]),
 
             Group::make([
