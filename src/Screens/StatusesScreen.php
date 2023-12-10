@@ -7,7 +7,7 @@ namespace MrVaco\OrchidStatusesManager\Screens;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use MrVaco\OrchidStatusesManager\Classes\StatusClass;
-use MrVaco\OrchidStatusesManager\Layouts\StatusesLayout;
+use MrVaco\OrchidStatusesManager\Layouts\StatusesTable;
 use MrVaco\OrchidStatusesManager\Models\StatusModel;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Screen;
@@ -39,7 +39,7 @@ class StatusesScreen extends Screen
     public function layout(): iterable
     {
         return [
-            StatusesLayout::class,
+            StatusesTable::class,
         ];
     }
 

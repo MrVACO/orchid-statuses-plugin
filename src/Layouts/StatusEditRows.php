@@ -11,7 +11,7 @@ use Orchid\Screen\Fields\Select;
 use Orchid\Screen\Fields\Switcher;
 use Orchid\Screen\Layouts\Rows;
 
-class StatusEditLayer extends Rows
+class StatusEditRows extends Rows
 {
     protected function fields(): iterable
     {

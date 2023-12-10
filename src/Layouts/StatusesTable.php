@@ -15,7 +15,7 @@ use Orchid\Screen\Components\Cells\DateTimeSplit;
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\TD;
 
-class StatusesLayout extends Table
+class StatusesTable extends Table
 {
     public $target = 'statuses';
 
