@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace MrVaco\OrchidStatusesManager\Layouts;
 
-use MrVaco\OrchidStatusesManager\Classes\StatusClass;
 use MrVaco\OrchidStatusesManager\Enums\StatusEnum;
 use MrVaco\OrchidStatusesManager\Models\StatusGroupModel;
 use Orchid\Screen\Actions\Button;
@@ -24,7 +23,7 @@ class StatusesGroupTable extends Table
             TD::make('name', __('Name'))
                 ->sort()
                 ->cantHide()
-                ->render(fn (StatusGroupModel $group) => Link::make($group->name)->route(StatusClass::$plugin_prefix . '.status.group.edit', $group->id)),
+                ->render(fn (StatusGroupModel $group) => Link::make($group->name)->route(StatusEnum::groupUpdate, $group->id)),
 
             TD::make('slug', __('Slug'))
                 ->sort()
@@ -56,7 +55,7 @@ class StatusesGroupTable extends Table
                         Link::make(__('Edit'))
                             ->icon('bs.pencil')
                             ->canSee(auth()->user()->hasAccess(StatusEnum::groupUpdate))
-                            ->route(StatusClass::$plugin_prefix . '.status.edit', $group->id),
+                            ->route(StatusEnum::groupUpdate, $group->id),
 
                         Button::make(__('Delete'))
                             ->icon('bs.trash3')

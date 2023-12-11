@@ -7,7 +7,6 @@ namespace MrVaco\OrchidStatusesManager;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\View;
 use MrVaco\HelperCode\Classes\Migrations;
-use MrVaco\OrchidStatusesManager\Classes\StatusClass;
 use MrVaco\OrchidStatusesManager\Enums\StatusEnum;
 use MrVaco\OrchidStatusesManager\Models\StatusModel;
 use MrVaco\OrchidStatusesManager\Observers\StatusObserver;
@@ -27,26 +26,29 @@ class StatusesServiceProvider extends OrchidServiceProvider
         $this->publish();
         $this->router();
 
-        View::addNamespace(StatusClass::$plugin_prefix, __DIR__ . '/../resources/views');
+        View::addNamespace(StatusEnum::prefixPlugin, __DIR__ . '/../resources/views');
         StatusModel::observe(StatusObserver::class);
     }
 
     public function menu(): array
     {
+        $title = __('Statuses management');
+
         return [
             Menu::make(__('Statuses'))
                 ->icon('bs.check2-square')
                 ->permission(StatusEnum::statusView)
-                ->route(StatusClass::$plugin_prefix . '.status.list')
-                ->active(StatusClass::$plugin_prefix . '.status.list')
-                ->title(__('Statuses management'))
+                ->route(StatusEnum::statusView)
+                ->active(StatusEnum::statusView)
+                ->title($title)
                 ->sort(100),
 
             Menu::make(__('Status groups'))
                 ->icon('bs.collection')
                 ->permission([StatusEnum::groupView])
-                ->route(StatusClass::$plugin_prefix . '.status.group.list')
-                ->active(StatusClass::$plugin_prefix . '.status.group.list')
+                ->route(StatusEnum::groupView)
+                ->active(StatusEnum::groupView)
+                ->title(auth()->user()->hasAccess(StatusEnum::statusView) ? null : $title)
                 ->sort(101),
         ];
     }

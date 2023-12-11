@@ -6,7 +6,6 @@ namespace MrVaco\OrchidStatusesManager\Traits;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use MrVaco\OrchidStatusesManager\Classes\StatusClass;
 use MrVaco\OrchidStatusesManager\Enums\StatusEnum;
 use MrVaco\OrchidStatusesManager\Layouts\StatusGroupEditRows;
 use MrVaco\OrchidStatusesManager\Models\StatusGroupModel;
@@ -37,7 +36,7 @@ trait StatusGroupCUScreensTrait
         return [
             Link::make(__('Cancel'))
                 ->icon('bs.x')
-                ->route(sprintf('%s.status.group.list', StatusClass::$plugin_prefix)),
+                ->route(StatusEnum::groupView),
 
             Button::make(__('Remove'))
                 ->icon('bs.trash3')
@@ -76,7 +75,7 @@ trait StatusGroupCUScreensTrait
 
         Toast::success(__('Status group was saved'));
 
-        return redirect()->route(StatusClass::$plugin_prefix . '.status.group.list');
+        return redirect()->route(StatusEnum::groupView);
     }
 
     public function remove(StatusGroupModel $group): RedirectResponse
@@ -86,6 +85,6 @@ trait StatusGroupCUScreensTrait
 
         Toast::info(__('Status group was removed'));
 
-        return redirect()->route(StatusClass::$plugin_prefix . '.status.group.list');
+        return redirect()->route(StatusEnum::groupView);
     }
 }

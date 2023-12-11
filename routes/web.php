@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-use MrVaco\OrchidStatusesManager\Classes\StatusClass;
+use MrVaco\OrchidStatusesManager\Enums\StatusEnum;
 use MrVaco\OrchidStatusesManager\Screens\StatusCreateScreen;
 use MrVaco\OrchidStatusesManager\Screens\StatusEditScreen;
 use MrVaco\OrchidStatusesManager\Screens\StatusesGroupScreen;
@@ -13,17 +13,16 @@ use Tabuna\Breadcrumbs\Trail;
 
 app('router')
     ->middleware(config('platform.middleware.private'))
-    ->name(sprintf('%s.', StatusClass::$plugin_prefix))
+    ->prefix('statuses')
     ->group(static function()
     {
         app('router')
-            ->name('status.')
-            ->prefix('statuses')
+            ->name('')
             ->group(static function()
             {
                 app('router')
                     ->screen('', StatusesScreen::class)
-                    ->name('list')
+                    ->name(StatusEnum::statusView)
                     ->breadcrumbs(fn (Trail $trail) => $trail
                         ->parent('platform.index')
                         ->push(__('Statuses'))
@@ -31,55 +30,55 @@ app('router')
 
                 app('router')
                     ->screen('create', StatusCreateScreen::class)
-                    ->name('create')
+                    ->name(StatusEnum::statusCreate)
                     ->breadcrumbs(fn (Trail $trail) => $trail
                         ->parent('platform.index')
-                        ->push(__('Statuses'), route(sprintf('%s.status.list', StatusClass::$plugin_prefix)))
+                        ->push(__('Statuses'), route(StatusEnum::statusView))
                         ->push(__('Create status'))
                     );
 
                 app('router')
                     ->screen('{status}/edit', StatusEditScreen::class)
-                    ->name('edit')
+                    ->name(StatusEnum::statusUpdate)
                     ->breadcrumbs(fn (Trail $trail, $status) => $trail
                         ->parent('platform.index')
-                        ->push(__('Statuses'), route(sprintf('%s.status.list', StatusClass::$plugin_prefix)))
+                        ->push(__('Statuses'), route(StatusEnum::statusView))
                         ->push(__('Edit status'))
+                    );
+            });
+
+        app('router')
+            ->name('')
+            ->prefix('group')
+            ->group(static function()
+            {
+                app('router')
+                    ->screen('', StatusesGroupScreen::class)
+                    ->name(StatusEnum::groupView)
+                    ->breadcrumbs(fn (Trail $trail) => $trail
+                        ->parent('platform.index')
+                        ->push(__('Statuses'), route(StatusEnum::statusView))
+                        ->push(__('Groups'))
                     );
 
                 app('router')
-                    ->name('group.')
-                    ->prefix('groups')
-                    ->group(static function()
-                    {
-                        app('router')
-                            ->screen('', StatusesGroupScreen::class)
-                            ->name('list')
-                            ->breadcrumbs(fn (Trail $trail) => $trail
-                                ->parent('platform.index')
-                                ->push(__('Statuses'), route(sprintf('%s.status.list', StatusClass::$plugin_prefix)))
-                                ->push(__('Groups'))
-                            );
+                    ->screen('create', StatusGroupCreateScreen::class)
+                    ->name(StatusEnum::groupCreate)
+                    ->breadcrumbs(fn (Trail $trail) => $trail
+                        ->parent('platform.index')
+                        ->push(__('Statuses'), route(StatusEnum::statusView))
+                        ->push(__('Groups'), route(StatusEnum::groupView))
+                        ->push(__('Create status group'))
+                    );
 
-                        app('router')
-                            ->screen('create', StatusGroupCreateScreen::class)
-                            ->name('create')
-                            ->breadcrumbs(fn (Trail $trail) => $trail
-                                ->parent('platform.index')
-                                ->push(__('Statuses'), route(sprintf('%s.status.list', StatusClass::$plugin_prefix)))
-                                ->push(__('Groups'), route(sprintf('%s.status.group.list', StatusClass::$plugin_prefix)))
-                                ->push(__('Create status group'))
-                            );
-
-                        app('router')
-                            ->screen('{group}/edit', StatusGroupEditScreen::class)
-                            ->name('edit')
-                            ->breadcrumbs(fn (Trail $trail) => $trail
-                                ->parent('platform.index')
-                                ->push(__('Statuses'), route(sprintf('%s.status.list', StatusClass::$plugin_prefix)))
-                                ->push(__('Groups'), route(sprintf('%s.status.group.list', StatusClass::$plugin_prefix)))
-                                ->push(__('Edit status group'))
-                            );
-                    });
+                app('router')
+                    ->screen('{group}/edit', StatusGroupEditScreen::class)
+                    ->name(StatusEnum::groupUpdate)
+                    ->breadcrumbs(fn (Trail $trail) => $trail
+                        ->parent('platform.index')
+                        ->push(__('Statuses'), route(StatusEnum::statusView))
+                        ->push(__('Groups'), route(StatusEnum::groupView))
+                        ->push(__('Edit status group'))
+                    );
             });
     });

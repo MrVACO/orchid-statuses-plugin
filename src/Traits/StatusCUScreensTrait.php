@@ -6,7 +6,6 @@ namespace MrVaco\OrchidStatusesManager\Traits;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use MrVaco\OrchidStatusesManager\Classes\StatusClass;
 use MrVaco\OrchidStatusesManager\Enums\StatusEnum;
 use MrVaco\OrchidStatusesManager\Layouts\StatusEditRows;
 use MrVaco\OrchidStatusesManager\Models\StatusModel;
@@ -37,7 +36,7 @@ trait StatusCUScreensTrait
         return [
             Link::make(__('Cancel'))
                 ->icon('bs.x')
-                ->route(sprintf('%s.status.list', StatusClass::$plugin_prefix)),
+                ->route(StatusEnum::statusView),
 
             Button::make(__('Remove'))
                 ->icon('bs.trash3')
@@ -77,7 +76,7 @@ trait StatusCUScreensTrait
 
         Toast::success(__('Status was saved'));
 
-        return redirect()->route(StatusClass::$plugin_prefix . '.status.list');
+        return redirect()->route(StatusEnum::statusView);
     }
 
     public function remove(StatusModel $status): RedirectResponse
@@ -87,6 +86,6 @@ trait StatusCUScreensTrait
 
         Toast::info(__('Status was removed'));
 
-        return redirect()->route(StatusClass::$plugin_prefix . '.status.list');
+        return redirect()->route(StatusEnum::statusView);
     }
 }

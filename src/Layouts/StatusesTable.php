@@ -5,7 +5,6 @@ declare(strict_types = 1);
 namespace MrVaco\OrchidStatusesManager\Layouts;
 
 use MrVaco\OrchidHelperCode\Screens\Tables\TDBoolean;
-use MrVaco\OrchidStatusesManager\Classes\StatusClass;
 use MrVaco\OrchidStatusesManager\Enums\StatusEnum;
 use MrVaco\OrchidStatusesManager\Models\StatusModel;
 use MrVaco\OrchidStatusesManager\Screens\Contents\StatusContent;
@@ -38,7 +37,7 @@ class StatusesTable extends Table
                 ->width('200px')
                 ->render(function($status)
                 {
-                    return view(StatusClass::$plugin_prefix . '::status_groups_badge', ['groups' => $status->group]);
+                    return view(StatusEnum::prefixPlugin . '::status_groups_badge', ['groups' => $status->group]);
                 }),
 
             TDBoolean::make('active', __('Default Active'))
@@ -77,7 +76,7 @@ class StatusesTable extends Table
                         Link::make(__('Edit'))
                             ->icon('bs.pencil')
                             ->canSee(auth()->user()->hasAccess(StatusEnum::statusUpdate))
-                            ->route(StatusClass::$plugin_prefix . '.status.edit', $status->id),
+                            ->route(StatusEnum::statusUpdate, $status->id),
 
                         Button::make(__('Delete'))
                             ->icon('bs.trash3')
