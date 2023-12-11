@@ -3,9 +3,11 @@
 declare(strict_types = 1);
 
 use MrVaco\OrchidStatusesManager\Classes\StatusClass;
+use MrVaco\OrchidStatusesManager\Screens\StatusCreateScreen;
 use MrVaco\OrchidStatusesManager\Screens\StatusEditScreen;
 use MrVaco\OrchidStatusesManager\Screens\StatusesGroupScreen;
 use MrVaco\OrchidStatusesManager\Screens\StatusesScreen;
+use MrVaco\OrchidStatusesManager\Screens\StatusGroupCreateScreen;
 use MrVaco\OrchidStatusesManager\Screens\StatusGroupEditScreen;
 use Tabuna\Breadcrumbs\Trail;
 
@@ -28,7 +30,7 @@ app('router')
                     );
 
                 app('router')
-                    ->screen('create', StatusEditScreen::class)
+                    ->screen('create', StatusCreateScreen::class)
                     ->name('create')
                     ->breadcrumbs(fn (Trail $trail) => $trail
                         ->parent('platform.index')
@@ -60,7 +62,7 @@ app('router')
                             );
 
                         app('router')
-                            ->screen('create', StatusGroupEditScreen::class)
+                            ->screen('create', StatusGroupCreateScreen::class)
                             ->name('create')
                             ->breadcrumbs(fn (Trail $trail) => $trail
                                 ->parent('platform.index')

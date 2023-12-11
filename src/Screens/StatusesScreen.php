@@ -7,6 +7,7 @@ namespace MrVaco\OrchidStatusesManager\Screens;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use MrVaco\OrchidStatusesManager\Classes\StatusClass;
+use MrVaco\OrchidStatusesManager\Enums\StatusEnum;
 use MrVaco\OrchidStatusesManager\Layouts\StatusesTable;
 use MrVaco\OrchidStatusesManager\Models\StatusModel;
 use Orchid\Screen\Actions\Link;
@@ -32,6 +33,7 @@ class StatusesScreen extends Screen
         return [
             Link::make(__('Add'))
                 ->icon('bs.plus')
+                ->canSee(auth()->user()->hasAccess(StatusEnum::statusCreate))
                 ->route(StatusClass::$plugin_prefix . '.status.create'),
         ];
     }
@@ -52,5 +54,10 @@ class StatusesScreen extends Screen
         Toast::info(__('Status was removed'));
 
         return redirect()->route(StatusClass::$plugin_prefix . '.status.list');
+    }
+
+    public function permission(): ?iterable
+    {
+        return [StatusEnum::statusView];
     }
 }

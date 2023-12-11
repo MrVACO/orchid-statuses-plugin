@@ -1,10 +1,14 @@
 {
+    "Add groups for statuses": "Добавлять группы",
+    "Add statuses": "Добавлять статусы",
     "Color": "Цвет",
     "Create status group": "Добавить группу",
     "Create status": "Добавить статус",
     "Default Active": "Активно (по-умолчанию)",
     "Default Disabled": "Отключено (по-умолчанию)",
     "Default Draft": "Черновик (по-умолчанию)",
+    "Delete groups": "Удалять группы",
+    "Delete statuses": "Удалять статусы",
     "Edit status : :name": "Редактирование статуса : :name",
     "Edit status group : :name": "Изменить группу : :name",
     "Edit status group": "Изменить группу",
@@ -21,5 +25,10 @@
     "Statuses management": "Управление статусами",
     "Statuses": "Статусы",
     "The status group will be deleted without the possibility of recovery": "Группа статусов будет удалена без возможности восстановления",
-    "The status will be deleted without the possibility of recovery": "Статус будет удален без возможности восстановления"
+    "The status will be deleted without the possibility of recovery": "Статус будет удален без возможности восстановления",
+    "Update groups": "Обновлять группы",
+    "Update statuses": "Обновлять статусы",
+    "View groups": "Просматривать группы",
+    "View statuses": "Просматривать статусы",
+    "You don't have the required permissions to view this page": "У вас нет необходимых разрешений для просмотра этой страницы"
 }

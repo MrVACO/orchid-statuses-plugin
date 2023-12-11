@@ -5,15 +5,17 @@ declare(strict_types = 1);
 namespace MrVaco\OrchidStatusesManager\Screens;
 
 use MrVaco\OrchidStatusesManager\Enums\StatusEnum;
-use MrVaco\OrchidStatusesManager\Traits\StatusGroupCUScreensTrait;
+use MrVaco\OrchidStatusesManager\Traits\StatusCUScreensTrait;
 use Orchid\Screen\Screen;
 
-class StatusGroupEditScreen extends Screen
+class StatusCreateScreen extends Screen
 {
-    use StatusGroupCUScreensTrait;
+    use StatusCUScreensTrait;
 
     public function permission(): ?iterable
     {
-        return [StatusEnum::groupUpdate];
+        return [
+            StatusEnum::statusCreate
+        ];
     }
 }

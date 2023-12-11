@@ -6,6 +6,7 @@ namespace MrVaco\OrchidStatusesManager\Layouts;
 
 use MrVaco\OrchidHelperCode\Screens\Tables\TDBoolean;
 use MrVaco\OrchidStatusesManager\Classes\StatusClass;
+use MrVaco\OrchidStatusesManager\Enums\StatusEnum;
 use MrVaco\OrchidStatusesManager\Models\StatusModel;
 use MrVaco\OrchidStatusesManager\Screens\Contents\StatusContent;
 use Orchid\Screen\Actions\Button;
@@ -69,19 +70,20 @@ class StatusesTable extends Table
             TD::make(__('Actions'))
                 ->alignCenter()
                 ->width('100px')
+                ->canSee(auth()->user()->hasAnyAccess([StatusEnum::statusUpdate, StatusEnum::statusDelete]))
                 ->render(fn (StatusModel $status) => DropDown::make()
                     ->icon('bs.three-dots-vertical')
                     ->list([
                         Link::make(__('Edit'))
-                            ->route(StatusClass::$plugin_prefix . '.status.edit', $status->id)
-                            ->icon('bs.pencil'),
+                            ->icon('bs.pencil')
+                            ->canSee(auth()->user()->hasAccess(StatusEnum::statusUpdate))
+                            ->route(StatusClass::$plugin_prefix . '.status.edit', $status->id),
 
                         Button::make(__('Delete'))
                             ->icon('bs.trash3')
+                            ->canSee(auth()->user()->hasAccess(StatusEnum::statusDelete))
                             ->confirm(__('The status will be deleted without the possibility of recovery'))
-                            ->method('remove', [
-                                'id' => $status->id,
-                            ]),
+                            ->method('remove', ['id' => $status->id]),
                     ])),
         ];
     }

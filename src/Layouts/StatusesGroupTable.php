@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace MrVaco\OrchidStatusesManager\Layouts;
 
 use MrVaco\OrchidStatusesManager\Classes\StatusClass;
+use MrVaco\OrchidStatusesManager\Enums\StatusEnum;
 use MrVaco\OrchidStatusesManager\Models\StatusGroupModel;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\DropDown;
@@ -48,19 +49,20 @@ class StatusesGroupTable extends Table
             TD::make(__('Actions'))
                 ->alignCenter()
                 ->width('100px')
+                ->canSee(auth()->user()->hasAnyAccess([StatusEnum::groupUpdate, StatusEnum::groupDelete]))
                 ->render(fn (StatusGroupModel $group) => DropDown::make()
                     ->icon('bs.three-dots-vertical')
                     ->list([
                         Link::make(__('Edit'))
-                            ->route(StatusClass::$plugin_prefix . '.status.edit', $group->id)
-                            ->icon('bs.pencil'),
+                            ->icon('bs.pencil')
+                            ->canSee(auth()->user()->hasAccess(StatusEnum::groupUpdate))
+                            ->route(StatusClass::$plugin_prefix . '.status.edit', $group->id),
 
                         Button::make(__('Delete'))
                             ->icon('bs.trash3')
+                            ->canSee(auth()->user()->hasAccess(StatusEnum::groupDelete))
                             ->confirm(__('The status group will be deleted without the possibility of recovery'))
-                            ->method('remove', [
-                                'id' => $group->id,
-                            ]),
+                            ->method('remove', ['id' => $group->id]),
                     ])),
         ];
     }

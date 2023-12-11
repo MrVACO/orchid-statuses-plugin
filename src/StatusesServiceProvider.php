@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\View;
 use MrVaco\HelperCode\Classes\Migrations;
 use MrVaco\OrchidStatusesManager\Classes\StatusClass;
+use MrVaco\OrchidStatusesManager\Enums\StatusEnum;
 use MrVaco\OrchidStatusesManager\Models\StatusModel;
 use MrVaco\OrchidStatusesManager\Observers\StatusObserver;
 use Orchid\Platform\Dashboard;
@@ -20,6 +21,7 @@ class StatusesServiceProvider extends OrchidServiceProvider
     {
         Lang::addJsonPath(__DIR__ . '/../resources/lang');
 
+        $dashboard->registerPermissions(StatusEnum::permissions());
         parent::boot($dashboard);
 
         $this->publish();
@@ -34,6 +36,7 @@ class StatusesServiceProvider extends OrchidServiceProvider
         return [
             Menu::make(__('Statuses'))
                 ->icon('bs.check2-square')
+                ->permission(StatusEnum::statusView)
                 ->route(StatusClass::$plugin_prefix . '.status.list')
                 ->active(StatusClass::$plugin_prefix . '.status.list')
                 ->title(__('Statuses management'))
@@ -41,6 +44,7 @@ class StatusesServiceProvider extends OrchidServiceProvider
 
             Menu::make(__('Status groups'))
                 ->icon('bs.collection')
+                ->permission([StatusEnum::groupView])
                 ->route(StatusClass::$plugin_prefix . '.status.group.list')
                 ->active(StatusClass::$plugin_prefix . '.status.group.list')
                 ->sort(101),

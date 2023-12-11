@@ -7,6 +7,7 @@ namespace MrVaco\OrchidStatusesManager\Screens;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use MrVaco\OrchidStatusesManager\Classes\StatusClass;
+use MrVaco\OrchidStatusesManager\Enums\StatusEnum;
 use MrVaco\OrchidStatusesManager\Layouts\StatusesGroupTable;
 use MrVaco\OrchidStatusesManager\Models\StatusGroupModel;
 use Orchid\Screen\Actions\Link;
@@ -32,6 +33,7 @@ class StatusesGroupScreen extends Screen
         return [
             Link::make(__('Add'))
                 ->icon('bs.plus')
+                ->canSee(auth()->user()->hasAccess(StatusEnum::groupCreate))
                 ->route(StatusClass::$plugin_prefix . '.status.group.create'),
         ];
     }
@@ -52,5 +54,10 @@ class StatusesGroupScreen extends Screen
         Toast::info(__('Status group was removed'));
 
         return redirect()->route(StatusClass::$plugin_prefix . '.status.group.list');
+    }
+
+    public function permission(): ?iterable
+    {
+        return [StatusEnum::groupView];
     }
 }

@@ -8,12 +8,12 @@ use MrVaco\OrchidStatusesManager\Enums\StatusEnum;
 use MrVaco\OrchidStatusesManager\Traits\StatusGroupCUScreensTrait;
 use Orchid\Screen\Screen;
 
-class StatusGroupEditScreen extends Screen
+class StatusGroupCreateScreen extends Screen
 {
     use StatusGroupCUScreensTrait;
 
     public function permission(): ?iterable
     {
-        return [StatusEnum::groupUpdate];
+        return [StatusEnum::groupCreate];
     }
 }
