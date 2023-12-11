@@ -47,6 +47,7 @@ trait StatusGroupCUScreensTrait
 
             Button::make(__('Save'))
                 ->icon('bs.check-circle')
+                ->canSee(auth()->user()->hasAccess(StatusEnum::groupCreate))
                 ->method('save'),
         ];
     }
