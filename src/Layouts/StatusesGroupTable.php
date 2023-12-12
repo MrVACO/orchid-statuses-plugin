@@ -23,7 +23,10 @@ class StatusesGroupTable extends Table
             TD::make('name', __('Name'))
                 ->sort()
                 ->cantHide()
-                ->render(fn (StatusGroupModel $group) => Link::make($group->name)->route(StatusEnum::groupUpdate, $group->id)),
+                ->render(fn (StatusGroupModel $group) => auth()->user()->hasAccess(StatusEnum::groupUpdate)
+                    ? Link::make($group->name)->route(StatusEnum::groupUpdate, $group->id)
+                    : Link::make($group->name)->href('#!')
+                ),
 
             TD::make('slug', __('Slug'))
                 ->sort()

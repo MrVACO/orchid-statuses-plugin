@@ -13,10 +13,18 @@ class StatusContent extends Content
 {
     public function render(StatusModel $status): View
     {
+        $canUpdate = auth()->user()->hasAccess(StatusEnum::statusUpdate);
+
+        if (!$canUpdate)
+        {
+            return view(StatusEnum::prefixPlugin . '::status_preview', [
+                'status' => $status
+            ]);
+        }
+
         return view(
             StatusEnum::prefixPlugin . '::status_table_td',
             [
-                'name'   => $status->name,
                 'url'    => route(StatusEnum::statusUpdate, $status->id),
                 'status' => $status,
                 'view'   => StatusEnum::prefixPlugin . '::status_preview'
