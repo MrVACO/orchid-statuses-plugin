@@ -30,11 +30,10 @@ class StatusObserver
         StatusModel::query()
             ->whereNot('id', $model->id)
             ->where(
-                fn(Builder $query) => $query
-                    ->where($columns->all(), 'or')
+                fn (Builder $query) => $query->where($columns->all(), boolean: 'or')
             )
             ->update(
-                $columns->map(fn(bool $value) => false)->all()
+                $columns->map(fn (bool $value) => false)->all()
             );
     }
 }
