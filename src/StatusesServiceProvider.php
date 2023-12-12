@@ -39,7 +39,7 @@ class StatusesServiceProvider extends OrchidServiceProvider
                 ->icon('bs.check2-square')
                 ->permission(StatusEnum::statusView)
                 ->route(StatusEnum::statusView)
-                ->active(StatusEnum::statusView)
+                ->active(StatusEnum::prefixStatus . '*')
                 ->title($title)
                 ->sort(100),
 
@@ -47,7 +47,7 @@ class StatusesServiceProvider extends OrchidServiceProvider
                 ->icon('bs.collection')
                 ->permission([StatusEnum::groupView])
                 ->route(StatusEnum::groupView)
-                ->active(StatusEnum::groupView)
+                ->active(StatusEnum::prefixGroup . '*')
                 ->title(auth()->user()->hasAccess(StatusEnum::statusView) ? null : $title)
                 ->sort(101),
         ];

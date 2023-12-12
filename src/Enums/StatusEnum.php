@@ -11,16 +11,23 @@ enum StatusEnum: string
     const author = 'mr_vaco';
 
     const prefixPlugin = self::author . '.statuses';
+    const prefixStatus = self::prefixPlugin . '.status.';
+    const prefixGroup  = self::prefixPlugin . '.group.';
 
-    const statusView   = self::prefixPlugin . '.status.view';
-    const statusCreate = self::prefixPlugin . '.status.create';
-    const statusUpdate = self::prefixPlugin . '.status.update';
-    const statusDelete = self::prefixPlugin . '.status.delete';
+    const postfixView   = 'view';
+    const postfixCreate = 'create';
+    const postfixUpdate = 'update';
+    const postfixDelete = 'delete';
 
-    const groupView   = self::prefixPlugin . '.status.group.view';
-    const groupCreate = self::prefixPlugin . '.status.group.create';
-    const groupUpdate = self::prefixPlugin . '.status.group.update';
-    const groupDelete = self::prefixPlugin . '.status.group.delete';
+    const statusView   = self::prefixStatus . self::postfixView;
+    const statusCreate = self::prefixStatus . self::postfixCreate;
+    const statusUpdate = self::prefixStatus . self::postfixUpdate;
+    const statusDelete = self::prefixStatus . self::postfixDelete;
+
+    const groupView   = self::prefixGroup . self::postfixView;
+    const groupCreate = self::prefixGroup . self::postfixCreate;
+    const groupUpdate = self::prefixGroup . self::postfixUpdate;
+    const groupDelete = self::prefixGroup . self::postfixDelete;
 
     static public function permissions()
     {
