@@ -27,8 +27,8 @@ trait StatusGroupCUScreensTrait
     public function name(): ?string
     {
         return $this->group->exists
-            ? __('Edit status group : :name', ['name' => $this->group->name])
-            : __('Create status group');
+            ? __(StatusEnum::author . '::status.group_edit :name', ['name' => $this->group->name])
+            : __(StatusEnum::author . '::status.group_add');
     }
 
     public function commandBar(): iterable
@@ -41,7 +41,7 @@ trait StatusGroupCUScreensTrait
             Button::make(__('Remove'))
                 ->icon('bs.trash3')
                 ->canSee($this->group->exists && auth()->user()->hasAccess(StatusEnum::groupDelete))
-                ->confirm(__('The status group will be deleted without the possibility of recovery'))
+                ->confirm(__(StatusEnum::author . '::status.group_confirm_delete'))
                 ->method('remove'),
 
             Button::make(__('Save'))
@@ -73,7 +73,7 @@ trait StatusGroupCUScreensTrait
             ->fill($request->collect('group')->toArray())
             ->save();
 
-        Toast::success(__('Status group was saved'));
+        Toast::success(__(StatusEnum::author . '::status.messages.group_saved'));
 
         return redirect()->route(StatusEnum::groupView);
     }
@@ -83,7 +83,7 @@ trait StatusGroupCUScreensTrait
         $group->statuses()->detach();
         $group->delete();
 
-        Toast::info(__('Status group was removed'));
+        Toast::info(__(StatusEnum::author . '::status.messages.group_deleted'));
 
         return redirect()->route(StatusEnum::groupView);
     }

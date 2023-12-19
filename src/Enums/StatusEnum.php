@@ -31,14 +31,14 @@ enum StatusEnum: string
 
     static public function permissions()
     {
-        return ItemPermission::group(__('Statuses management'))
-            ->addPermission(self::statusView, __('View statuses'))
-            ->addPermission(self::statusCreate, __('Add statuses'))
-            ->addPermission(self::statusUpdate, __('Update statuses'))
-            ->addPermission(self::statusDelete, __('Delete statuses'))
-            ->addPermission(self::groupView, __('View groups'))
-            ->addPermission(self::groupCreate, __('Add groups for statuses'))
-            ->addPermission(self::groupUpdate, __('Update groups'))
-            ->addPermission(self::groupDelete, __('Delete groups'));
+        return ItemPermission::group(__(StatusEnum::author . '::status.plugin.category'))
+            ->addPermission(self::statusView, __(StatusEnum::author . '::status.permissions.view'))
+            ->addPermission(self::statusCreate, __(StatusEnum::author . '::status.permissions.create'))
+            ->addPermission(self::statusUpdate, __(StatusEnum::author . '::status.permissions.update'))
+            ->addPermission(self::statusDelete, __(StatusEnum::author . '::status.permissions.delete'))
+            ->addPermission(self::groupView, __(StatusEnum::author . '::status.permissions.group.view'))
+            ->addPermission(self::groupCreate, __(StatusEnum::author . '::status.permissions.group.create'))
+            ->addPermission(self::groupUpdate, __(StatusEnum::author . '::status.permissions.group.update'))
+            ->addPermission(self::groupDelete, __(StatusEnum::author . '::status.permissions.group.delete'));
     }
 }

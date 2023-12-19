@@ -18,7 +18,7 @@ class StatusesServiceProvider extends OrchidServiceProvider
 {
     public function boot(Dashboard $dashboard): void
     {
-        Lang::addJsonPath(__DIR__ . '/../resources/lang');
+        Lang::addNamespace(StatusEnum::author, __DIR__ . '/../resources/lang');
 
         $dashboard->registerPermissions(StatusEnum::permissions());
         parent::boot($dashboard);
@@ -32,10 +32,10 @@ class StatusesServiceProvider extends OrchidServiceProvider
 
     public function menu(): array
     {
-        $title = __('Statuses management');
+        $title = __(StatusEnum::author . '::status.plugin.category');
 
         return [
-            Menu::make(__('Statuses'))
+            Menu::make(__(StatusEnum::author . '::status.plugin.name'))
                 ->icon('bs.check2-square')
                 ->permission(StatusEnum::statusView)
                 ->route(StatusEnum::statusView)
@@ -43,7 +43,7 @@ class StatusesServiceProvider extends OrchidServiceProvider
                 ->title($title)
                 ->sort(100),
 
-            Menu::make(__('Status groups'))
+            Menu::make(__(StatusEnum::author . '::status.groups'))
                 ->icon('bs.collection')
                 ->permission([StatusEnum::groupView])
                 ->route(StatusEnum::groupView)

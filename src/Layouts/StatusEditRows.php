@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace MrVaco\OrchidStatusesManager\Layouts;
 
+use MrVaco\OrchidStatusesManager\Enums\StatusEnum;
 use MrVaco\OrchidStatusesManager\Models\StatusGroupModel;
 use Orchid\Screen\Fields\Group;
 use Orchid\Screen\Fields\Input;
@@ -28,26 +29,26 @@ class StatusEditRows extends Rows
                 Input::make('status.color')
                     ->type('color')
                     ->value('#' . substr(md5((string) rand()), 0, 6))
-                    ->title(__('Color')),
+                    ->title(__(StatusEnum::author . '::status.color')),
 
                 Select::make('status.group')
                     ->fromQuery(StatusGroupModel::query(), 'name')
                     ->multiple()
-                    ->title(__('Select groups')),
+                    ->title(__(StatusEnum::author . '::status.groups_select')),
             ]),
 
             Group::make([
                 Switcher::make('status.active')
                     ->sendTrueOrFalse()
-                    ->title('Default Active'),
+                    ->title(StatusEnum::author . '::status.active_by_default'),
 
                 Switcher::make('status.disabled')
                     ->sendTrueOrFalse()
-                    ->title('Default Disabled'),
+                    ->title(StatusEnum::author . '::status.disabled_by_default'),
 
                 Switcher::make('status.draft')
                     ->sendTrueOrFalse()
-                    ->title('Default Draft'),
+                    ->title(StatusEnum::author . '::status.draft_by_default'),
             ]),
         ];
     }

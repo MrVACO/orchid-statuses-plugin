@@ -32,7 +32,7 @@ class StatusesGroupTable extends Table
                 ->sort()
                 ->alignCenter(),
 
-            TD::make('statuses_count', __('Statuses count'))
+            TD::make('statuses_count', __(StatusEnum::author . '::status.statuses_count'))
                 ->sort()
                 ->alignCenter()
                 ->render(fn (StatusGroupModel $group) => $group->statuses->count()),
@@ -63,7 +63,7 @@ class StatusesGroupTable extends Table
                         Button::make(__('Delete'))
                             ->icon('bs.trash3')
                             ->canSee(auth()->user()->hasAccess(StatusEnum::groupDelete))
-                            ->confirm(__('The status group will be deleted without the possibility of recovery'))
+                            ->confirm(__(StatusEnum::author . '::status.group_confirm_delete'))
                             ->method('remove', ['id' => $group->id]),
                     ])),
         ];

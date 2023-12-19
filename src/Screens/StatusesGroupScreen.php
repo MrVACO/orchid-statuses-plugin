@@ -24,13 +24,13 @@ class StatusesGroupScreen extends Screen
 
     public function name(): ?string
     {
-        return __('Status groups');
+        return __(StatusEnum::author . '::status.groups');
     }
 
     public function commandBar(): iterable
     {
         return [
-            Link::make(__('Add'))
+            Link::make(__(StatusEnum::author . '::status.group_add'))
                 ->icon('bs.plus')
                 ->canSee(auth()->user()->hasAccess(StatusEnum::groupCreate))
                 ->route(StatusEnum::groupCreate),
@@ -50,7 +50,7 @@ class StatusesGroupScreen extends Screen
         $status->statuses()->detach();
         $status->delete();
 
-        Toast::info(__('Status group was removed'));
+        Toast::info(__(StatusEnum::author . '::status.messages.status_deleted'));
 
         return redirect()->route(StatusEnum::groupView);
     }

@@ -24,13 +24,13 @@ class StatusesScreen extends Screen
 
     public function name(): ?string
     {
-        return __('Statuses');
+        return __(StatusEnum::author . '::status.plugin.name');
     }
 
     public function commandBar(): iterable
     {
         return [
-            Link::make(__('Add'))
+            Link::make(__(StatusEnum::author . '::status.status_add'))
                 ->icon('bs.plus')
                 ->canSee(auth()->user()->hasAccess(StatusEnum::statusCreate))
                 ->route(StatusEnum::statusCreate),
@@ -50,7 +50,7 @@ class StatusesScreen extends Screen
         $status->group()->detach();
         $status->delete();
 
-        Toast::info(__('Status was removed'));
+        Toast::info(__(StatusEnum::author . '::status.messages.status_deleted'));
 
         return redirect()->route(StatusEnum::statusView);
     }

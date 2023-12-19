@@ -27,12 +27,12 @@ class StatusesTable extends Table
                 ->cantHide()
                 ->render(fn (StatusModel $status) => new StatusContent($status)),
 
-            TD::make('color', __('Color'))
+            TD::make('color', __(StatusEnum::author . '::status.color'))
                 ->sort()
                 ->alignCenter()
                 ->defaultHidden(),
 
-            TD::make('group', __('Groups'))
+            TD::make('group', __(StatusEnum::author . '::status.groups'))
                 ->alignCenter()
                 ->width('200px')
                 ->render(function($status)
@@ -40,17 +40,17 @@ class StatusesTable extends Table
                     return view(StatusEnum::prefixPlugin . '::status_groups_badge', ['groups' => $status->group]);
                 }),
 
-            TDBoolean::make('active', __('Default Active'))
+            TDBoolean::make('active', __(StatusEnum::author . '::status.active_by_default'))
                 ->sort()
                 ->width('150px')
                 ->alignCenter(),
 
-            TDBoolean::make('disabled', __('Default Disabled'))
+            TDBoolean::make('disabled', __(StatusEnum::author . '::status.disabled_by_default'))
                 ->sort()
                 ->width('150px')
                 ->alignCenter(),
 
-            TDBoolean::make('draft', __('Default Draft'))
+            TDBoolean::make('draft', __(StatusEnum::author . '::status.draft_by_default'))
                 ->sort()
                 ->width('150px')
                 ->alignCenter(),
@@ -81,7 +81,7 @@ class StatusesTable extends Table
                         Button::make(__('Delete'))
                             ->icon('bs.trash3')
                             ->canSee(auth()->user()->hasAccess(StatusEnum::statusDelete))
-                            ->confirm(__('The status will be deleted without the possibility of recovery'))
+                            ->confirm(__(StatusEnum::author . '::status.status_confirm_delete'))
                             ->method('remove', ['id' => $status->id]),
                     ])),
         ];

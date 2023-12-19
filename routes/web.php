@@ -25,7 +25,7 @@ app('router')
                     ->name(StatusEnum::statusView)
                     ->breadcrumbs(fn (Trail $trail) => $trail
                         ->parent('platform.index')
-                        ->push(__('Statuses'))
+                        ->push(__(StatusEnum::author . '::status.plugin.name'))
                     );
 
                 app('router')
@@ -33,8 +33,8 @@ app('router')
                     ->name(StatusEnum::statusCreate)
                     ->breadcrumbs(fn (Trail $trail) => $trail
                         ->parent('platform.index')
-                        ->push(__('Statuses'), route(StatusEnum::statusView))
-                        ->push(__('Create status'))
+                        ->push(__(StatusEnum::author . '::status.plugin.name'), route(StatusEnum::statusView))
+                        ->push(__(StatusEnum::author . '::status.status_add'))
                     );
 
                 app('router')
@@ -42,8 +42,8 @@ app('router')
                     ->name(StatusEnum::statusUpdate)
                     ->breadcrumbs(fn (Trail $trail, $status) => $trail
                         ->parent('platform.index')
-                        ->push(__('Statuses'), route(StatusEnum::statusView))
-                        ->push(__('Edit status'))
+                        ->push(__(StatusEnum::author . '::status.plugin.name'), route(StatusEnum::statusView))
+                        ->push(__(StatusEnum::author . '::status.status_edit'))
                     );
             });
 
@@ -57,8 +57,8 @@ app('router')
                     ->name(StatusEnum::groupView)
                     ->breadcrumbs(fn (Trail $trail) => $trail
                         ->parent('platform.index')
-                        ->push(__('Statuses'), route(StatusEnum::statusView))
-                        ->push(__('Groups'))
+                        ->push(__(StatusEnum::author . '::status.plugin.name'), route(StatusEnum::statusView))
+                        ->push(__(StatusEnum::author . '::status.groups'))
                     );
 
                 app('router')
@@ -66,9 +66,9 @@ app('router')
                     ->name(StatusEnum::groupCreate)
                     ->breadcrumbs(fn (Trail $trail) => $trail
                         ->parent('platform.index')
-                        ->push(__('Statuses'), route(StatusEnum::statusView))
-                        ->push(__('Groups'), route(StatusEnum::groupView))
-                        ->push(__('Create status group'))
+                        ->push(__(StatusEnum::author . '::status.plugin.name'), route(StatusEnum::statusView))
+                        ->push(__(StatusEnum::author . '::status.groups'), route(StatusEnum::groupView))
+                        ->push(__(StatusEnum::author . '::status.group_add'))
                     );
 
                 app('router')
@@ -76,9 +76,9 @@ app('router')
                     ->name(StatusEnum::groupUpdate)
                     ->breadcrumbs(fn (Trail $trail) => $trail
                         ->parent('platform.index')
-                        ->push(__('Statuses'), route(StatusEnum::statusView))
-                        ->push(__('Groups'), route(StatusEnum::groupView))
-                        ->push(__('Edit status group'))
+                        ->push(__(StatusEnum::author . '::status.plugin.name'), route(StatusEnum::statusView))
+                        ->push(__(StatusEnum::author . '::status.groups'), route(StatusEnum::groupView))
+                        ->push(__(StatusEnum::author . '::status.group_edit'))
                     );
             });
     });

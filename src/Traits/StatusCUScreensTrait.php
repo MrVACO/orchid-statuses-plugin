@@ -27,8 +27,8 @@ trait StatusCUScreensTrait
     public function name(): ?string
     {
         return $this->status->exists
-            ? __('Edit status : :name', ['name' => $this->status->name])
-            : __('Create status');
+            ? __(StatusEnum::author . '::status.status_edit :name', ['name' => $this->status->name])
+            : __(StatusEnum::author . '::status.status_add');
     }
 
     public function commandBar(): iterable
@@ -41,7 +41,7 @@ trait StatusCUScreensTrait
             Button::make(__('Remove'))
                 ->icon('bs.trash3')
                 ->canSee($this->status->exists && auth()->user()->hasAccess(StatusEnum::statusDelete))
-                ->confirm(__('The status will be deleted without the possibility of recovery'))
+                ->confirm(__(StatusEnum::author . '::status.status_confirm_delete'))
                 ->method('remove'),
 
             Button::make(__('Save'))
@@ -74,7 +74,7 @@ trait StatusCUScreensTrait
         $status->group()->detach();
         $status->group()->attach($groups);
 
-        Toast::success(__('Status was saved'));
+        Toast::success(__(StatusEnum::author . '::status.messages.status_saved'));
 
         return redirect()->route(StatusEnum::statusView);
     }
@@ -84,7 +84,7 @@ trait StatusCUScreensTrait
         $status->group()->detach();
         $status->delete();
 
-        Toast::info(__('Status was removed'));
+        Toast::info(__(StatusEnum::author . '::status.messages.status_deleted'));
 
         return redirect()->route(StatusEnum::statusView);
     }
