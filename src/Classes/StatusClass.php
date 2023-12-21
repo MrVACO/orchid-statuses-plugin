@@ -45,6 +45,6 @@ class StatusClass
         if ($swap)
             return $data->pluck('id', 'name')->toArray();
 
-        return $data->pluck('name', 'key')->toArray();
+        return $data->pluck('name', 'id')->toArray();
     }
 }
