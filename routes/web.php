@@ -2,13 +2,13 @@
 
 declare(strict_types = 1);
 
-use MrVaco\OrchidStatusesManager\Enums\StatusEnum;
-use MrVaco\OrchidStatusesManager\Screens\StatusCreateScreen;
-use MrVaco\OrchidStatusesManager\Screens\StatusEditScreen;
-use MrVaco\OrchidStatusesManager\Screens\StatusesGroupScreen;
-use MrVaco\OrchidStatusesManager\Screens\StatusesScreen;
-use MrVaco\OrchidStatusesManager\Screens\StatusGroupCreateScreen;
-use MrVaco\OrchidStatusesManager\Screens\StatusGroupEditScreen;
+use MrVaco\OrchidStatuses\Enums\StatusEnum;
+use MrVaco\OrchidStatuses\Screens\StatusCreateScreen;
+use MrVaco\OrchidStatuses\Screens\StatusEditScreen;
+use MrVaco\OrchidStatuses\Screens\StatusesGroupScreen;
+use MrVaco\OrchidStatuses\Screens\StatusesScreen;
+use MrVaco\OrchidStatuses\Screens\StatusGroupCreateScreen;
+use MrVaco\OrchidStatuses\Screens\StatusGroupEditScreen;
 use Tabuna\Breadcrumbs\Trail;
 
 app('router')

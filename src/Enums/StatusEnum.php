@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace MrVaco\OrchidStatusesManager\Enums;
+namespace MrVaco\OrchidStatuses\Enums;
 
 use Orchid\Platform\ItemPermission;
 

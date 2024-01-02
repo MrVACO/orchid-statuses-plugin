@@ -1,6 +1,6 @@
 <?php
 
-namespace MrVaco\OrchidStatusesManager\Models;
+namespace MrVaco\OrchidStatuses\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;

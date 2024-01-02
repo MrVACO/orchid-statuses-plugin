@@ -3,8 +3,8 @@
 declare(strict_types = 1);
 
 use Illuminate\Database\Migrations\Migration;
-use MrVaco\OrchidStatusesManager\Models\StatusGroupModel;
-use MrVaco\OrchidStatusesManager\Models\StatusModel;
+use MrVaco\OrchidStatuses\Models\StatusGroupModel;
+use MrVaco\OrchidStatuses\Models\StatusModel;
 
 return new class extends Migration
 {

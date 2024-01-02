@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace MrVaco\OrchidStatusesManager\Layouts;
+namespace MrVaco\OrchidStatuses\Layouts;
 
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Layouts\Rows;

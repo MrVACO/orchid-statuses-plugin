@@ -1,5 +1,5 @@
 {
-    "name": "mr-vaco/orchid-statuses-manager-plugin",
+    "name": "mr-vaco/orchid-statuses-plugin",
     "description": "Statuses management",
     "keywords": [
         "laravel",
@@ -10,18 +10,18 @@
     "license": "MIT",
     "require": {
         "php": "^8.0",
-        "mr-vaco/helper-code-for-laravel": "^0.1",
-        "mr-vaco/orchid-helper-code": "^1.0"
+        "mr-vaco/helper-code-for-laravel": "@dev",
+        "mr-vaco/orchid-helper-code": "@dev"
     },
     "autoload": {
         "psr-4": {
-            "MrVaco\\OrchidStatusesManager\\": "src/"
+            "MrVaco\\OrchidStatuses\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "MrVaco\\OrchidStatusesManager\\StatusesServiceProvider"
+                "MrVaco\\OrchidStatuses\\StatusesServiceProvider"
             ]
         }
     },

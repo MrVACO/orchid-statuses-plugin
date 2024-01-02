@@ -2,10 +2,10 @@
 
 declare(strict_types = 1);
 
-namespace MrVaco\OrchidStatusesManager\Layouts;
+namespace MrVaco\OrchidStatuses\Layouts;
 
-use MrVaco\OrchidStatusesManager\Enums\StatusEnum;
-use MrVaco\OrchidStatusesManager\Models\StatusGroupModel;
+use MrVaco\OrchidStatuses\Enums\StatusEnum;
+use MrVaco\OrchidStatuses\Models\StatusGroupModel;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\DropDown;
 use Orchid\Screen\Actions\Link;

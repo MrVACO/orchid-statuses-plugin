@@ -2,9 +2,9 @@
 
 declare(strict_types = 1);
 
-namespace MrVaco\OrchidStatusesManager\Classes;
+namespace MrVaco\OrchidStatuses\Classes;
 
-use MrVaco\OrchidStatusesManager\Models\StatusModel;
+use MrVaco\OrchidStatuses\Models\StatusModel;
 
 class StatusClass
 {

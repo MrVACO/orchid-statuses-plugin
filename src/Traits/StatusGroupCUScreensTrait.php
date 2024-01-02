@@ -2,13 +2,13 @@
 
 declare(strict_types = 1);
 
-namespace MrVaco\OrchidStatusesManager\Traits;
+namespace MrVaco\OrchidStatuses\Traits;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use MrVaco\OrchidStatusesManager\Enums\StatusEnum;
-use MrVaco\OrchidStatusesManager\Layouts\StatusGroupEditRows;
-use MrVaco\OrchidStatusesManager\Models\StatusGroupModel;
+use MrVaco\OrchidStatuses\Enums\StatusEnum;
+use MrVaco\OrchidStatuses\Layouts\StatusGroupEditRows;
+use MrVaco\OrchidStatuses\Models\StatusGroupModel;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\Link;
 use Orchid\Support\Facades\Toast;

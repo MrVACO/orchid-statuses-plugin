@@ -2,10 +2,10 @@
 
 declare(strict_types = 1);
 
-namespace MrVaco\OrchidStatusesManager\Screens;
+namespace MrVaco\OrchidStatuses\Screens;
 
-use MrVaco\OrchidStatusesManager\Enums\StatusEnum;
-use MrVaco\OrchidStatusesManager\Traits\StatusCUScreensTrait;
+use MrVaco\OrchidStatuses\Enums\StatusEnum;
+use MrVaco\OrchidStatuses\Traits\StatusCUScreensTrait;
 use Orchid\Screen\Screen;
 
 class StatusEditScreen extends Screen

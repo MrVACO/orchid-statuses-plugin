@@ -2,12 +2,12 @@
 
 declare(strict_types = 1);
 
-namespace MrVaco\OrchidStatusesManager\Layouts;
+namespace MrVaco\OrchidStatuses\Layouts;
 
-use MrVaco\OrchidHelperCode\Screens\Tables\TDBoolean;
-use MrVaco\OrchidStatusesManager\Enums\StatusEnum;
-use MrVaco\OrchidStatusesManager\Models\StatusModel;
-use MrVaco\OrchidStatusesManager\Screens\Contents\StatusContent;
+use MrVaco\OrchidHelperCode\Components\TDBooleanComponent;
+use MrVaco\OrchidStatuses\Enums\StatusEnum;
+use MrVaco\OrchidStatuses\Models\StatusModel;
+use MrVaco\OrchidStatuses\Screens\Contents\StatusContent;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\DropDown;
 use Orchid\Screen\Actions\Link;
@@ -40,17 +40,20 @@ class StatusesTable extends Table
                     return view(StatusEnum::prefixPlugin . '::status_groups_badge', ['groups' => $status->group]);
                 }),
 
-            TDBoolean::make('active', __(StatusEnum::author . '::status.active_by_default'))
+            TD::make('active', __(StatusEnum::author . '::status.active_by_default'))
+                ->usingComponent(TDBooleanComponent::class)
                 ->sort()
                 ->width('150px')
                 ->alignCenter(),
 
-            TDBoolean::make('disabled', __(StatusEnum::author . '::status.disabled_by_default'))
+            TD::make('disabled', __(StatusEnum::author . '::status.disabled_by_default'))
+                ->usingComponent(TDBooleanComponent::class)
                 ->sort()
                 ->width('150px')
                 ->alignCenter(),
 
-            TDBoolean::make('draft', __(StatusEnum::author . '::status.draft_by_default'))
+            TD::make('draft', __(StatusEnum::author . '::status.draft_by_default'))
+                ->usingComponent(TDBooleanComponent::class)
                 ->sort()
                 ->width('150px')
                 ->alignCenter(),

@@ -2,10 +2,10 @@
 
 declare(strict_types = 1);
 
-namespace MrVaco\OrchidStatusesManager\Observers;
+namespace MrVaco\OrchidStatuses\Observers;
 
 use Illuminate\Database\Eloquent\Builder;
-use MrVaco\OrchidStatusesManager\Models\StatusModel;
+use MrVaco\OrchidStatuses\Models\StatusModel;
 
 class StatusObserver
 {

@@ -2,14 +2,14 @@
 
 declare(strict_types = 1);
 
-namespace MrVaco\OrchidStatusesManager;
+namespace MrVaco\OrchidStatuses;
 
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\View;
 use MrVaco\HelperCode\Classes\Migrations;
-use MrVaco\OrchidStatusesManager\Enums\StatusEnum;
-use MrVaco\OrchidStatusesManager\Models\StatusModel;
-use MrVaco\OrchidStatusesManager\Observers\StatusObserver;
+use MrVaco\OrchidStatuses\Enums\StatusEnum;
+use MrVaco\OrchidStatuses\Models\StatusModel;
+use MrVaco\OrchidStatuses\Observers\StatusObserver;
 use Orchid\Platform\Dashboard;
 use Orchid\Platform\OrchidServiceProvider;
 use Orchid\Screen\Actions\Menu;

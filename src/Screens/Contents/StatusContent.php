@@ -2,11 +2,11 @@
 
 declare(strict_types = 1);
 
-namespace MrVaco\OrchidStatusesManager\Screens\Contents;
+namespace MrVaco\OrchidStatuses\Screens\Contents;
 
 use Illuminate\View\View;
-use MrVaco\OrchidStatusesManager\Enums\StatusEnum;
-use MrVaco\OrchidStatusesManager\Models\StatusModel;
+use MrVaco\OrchidStatuses\Enums\StatusEnum;
+use MrVaco\OrchidStatuses\Models\StatusModel;
 use Orchid\Screen\Layouts\Content;
 
 class StatusContent extends Content
