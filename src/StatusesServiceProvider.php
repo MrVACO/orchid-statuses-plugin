@@ -68,7 +68,7 @@ class StatusesServiceProvider extends OrchidServiceProvider
         }
 
         $this->publishes([
-            __DIR__ . '/../migrations/' => database_path('/migrations'),
+            __DIR__ . '/../migrations' => database_path('migrations'),
         ], 'plugin-migrations');
     }
 }
