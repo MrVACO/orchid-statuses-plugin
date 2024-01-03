@@ -6,7 +6,6 @@ namespace MrVaco\OrchidStatuses;
 
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\View;
-use MrVaco\HelperCode\Classes\Migrations;
 use MrVaco\OrchidStatuses\Enums\StatusEnum;
 use MrVaco\OrchidStatuses\Models\StatusModel;
 use MrVaco\OrchidStatuses\Observers\StatusObserver;
@@ -69,9 +68,7 @@ class StatusesServiceProvider extends OrchidServiceProvider
         }
 
         $this->publishes([
-            __DIR__ . '/../stubs/create_statuses_table.stub'        => Migrations::getMigrationFileName('create_statuses_table.php'),
-            __DIR__ . '/../stubs/create_statuses_groups_table.stub' => Migrations::getMigrationFileName('create_statuses_groups_table.php'),
-            __DIR__ . '/../stubs/fill_statuses.stub'                => Migrations::getMigrationFileName('fill_statuses.php'),
+            __DIR__ . '/../migrations/' => database_path('/migrations'),
         ], 'plugin-migrations');
     }
 }
